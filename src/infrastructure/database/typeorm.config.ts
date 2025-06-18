@@ -1,18 +1,16 @@
-import { DataSource } from 'typeorm';
-import { config } from 'dotenv';
+import { TypeOrmModuleOptions } from '@nestjs/typeorm';
+import { ConfigService } from '@nestjs/config';
 import { join } from 'path';
 
-config(); // Load environment variables
-
-export default new DataSource({
+export const getTypeOrmConfig = (configService: ConfigService): TypeOrmModuleOptions => ({
   type: 'postgres',
-  host: process.env.DB_HOST || 'localhost',
-  port: parseInt(process.env.DB_PORT || '5432'),
-  username: process.env.DB_USERNAME || 'postgres',
-  password: process.env.DB_PASSWORD || 'postgres',
-  database: process.env.DB_DATABASE || 'wms_db',
-  entities: [join(__dirname, '..', '..', '**', '*.entity{.ts,.js}')],
-  migrations: [join(__dirname, 'migrations', '*{.ts,.js}')],
-  synchronize: false,
-  logging: process.env.NODE_ENV === 'development',
+  host: configService.get('DB_HOST', 'localhost'),
+  port: configService.get('DB_PORT', 5432),
+  username: configService.get('DB_USERNAME', 'postgres'),
+  password: configService.get('DB_PASSWORD', 'postgres'),
+  database: configService.get('DB_DATABASE', 'wms_db'),
+  entities: [join(__dirname, '..', '..', 'core', 'domain', 'entities', '*.entity.{ts,js}')],
+  migrations: [join(__dirname, 'migrations', '*.{ts,js}')],
+  synchronize: configService.get('NODE_ENV', 'development') === 'development',
+  logging: configService.get('NODE_ENV', 'development') === 'development',
 }); 

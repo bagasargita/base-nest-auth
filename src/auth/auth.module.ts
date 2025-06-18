@@ -7,6 +7,7 @@ import { AuthService } from '../infrastructure/services/auth.service';
 import { JwtStrategy } from '../infrastructure/strategies/jwt.strategy';
 import { User } from '../core/domain/entities/user.entity';
 import { UserRepository } from '../infrastructure/repositories/user.repository';
+import { Role } from 'src/core/domain/entities/role.entity';
 
 @Module({
   imports: [
@@ -15,7 +16,7 @@ import { UserRepository } from '../infrastructure/repositories/user.repository';
       secret: process.env.JWT_SECRET || 'your-secret-key',
       signOptions: { expiresIn: '1d' },
     }),
-    TypeOrmModule.forFeature([User]),
+    TypeOrmModule.forFeature([User, Role]),
   ],
   controllers: [AuthController],
   providers: [

@@ -1,10 +1,12 @@
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { join } from 'path';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Module } from '@nestjs/common';
-import { User } from './core/domain/entities/user.entity';
-import { AuthModule } from './auth/auth.module';
 import { APP_GUARD } from '@nestjs/core';
 import { JwtAuthGuard } from './infrastructure/guards/auth.guard';
+import { RolePermissionModule } from './infrastructure/modules/role-permission.module';
+import { MenuModule } from './infrastructure/modules/menu.module';
+import { AuthModule } from './infrastructure/modules/auth.module';
 
 @Module({
   imports: [
@@ -19,13 +21,15 @@ import { JwtAuthGuard } from './infrastructure/guards/auth.guard';
         port: configService.get('DB_PORT', 5432),
         username: configService.get('DB_USERNAME', 'postgres'),
         password: configService.get('DB_PASSWORD', 'postgres'),
-        database: configService.get('DB_DATABASE', 'wms'),
-        entities: [User],
+        database: configService.get('DB_DATABASE', 'wms_db'),
+        entities: [join(__dirname, 'core', 'domain', 'entities', '*.entity.{ts,js}')],
         synchronize: configService.get('NODE_ENV', 'development') === 'development',
       }),
       inject: [ConfigService],
     }),
     AuthModule,
+    RolePermissionModule,
+    MenuModule,
   ],
   providers: [
     {
