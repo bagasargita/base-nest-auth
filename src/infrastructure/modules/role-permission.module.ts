@@ -11,7 +11,7 @@ import { PermissionRepository } from '../repositories/permission.repository';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Role, Permission])],
-  controllers: [RoleController, PermissionController],
+  controllers: [RoleController],
   providers: [
     RoleService,
     PermissionService,
