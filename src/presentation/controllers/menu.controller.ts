@@ -1,6 +1,6 @@
 import { Controller, Get, Post, Put, Delete, Body, Param, ParseIntPipe } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiResponse, ApiBearerAuth } from '@nestjs/swagger';
-import { MenuService } from '../../core/application/services/menu.service';
+import { MenuService } from '../../infrastructure/services/menu.service';
 import { CreateMenuDto } from '../../core/application/dtos/menu/create-menu.dto';
 import { UpdateMenuDto } from '../../core/application/dtos/menu/update-menu.dto';
 import { Public } from '../../infrastructure/decorators/public.decorator';

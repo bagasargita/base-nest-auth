@@ -4,8 +4,8 @@ import { Role } from '../../core/domain/entities/role.entity';
 import { Permission } from '../../core/domain/entities/permission.entity';
 import { RoleController } from '../../presentation/controllers/role.controller';
 import { PermissionController } from '../../presentation/controllers/permission.controller';
-import { RoleService } from '../../core/application/services/role.service';
-import { PermissionService } from '../../core/application/services/permission.service';
+import { RoleService } from '../services/role.service';
+import { PermissionService } from '../services/permission.service';
 import { RoleRepository } from '../repositories/role.repository';
 import { PermissionRepository } from '../repositories/permission.repository';
 

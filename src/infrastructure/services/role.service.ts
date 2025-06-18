@@ -1,9 +1,9 @@
 import { Injectable, Inject, NotFoundException, ConflictException } from '@nestjs/common';
-import { IRoleRepository } from '../../domain/interfaces/role.repository.interface';
-import { IPermissionRepository } from '../../domain/interfaces/permission.repository.interface';
-import { Role } from '../../domain/entities/role.entity';
-import { CreateRoleDto } from '../dtos/role/create-role.dto';
-import { UpdateRoleDto } from '../dtos/role/update-role.dto';
+import { IRoleRepository } from '../../core/domain/interfaces/role.repository.interface';
+import { IPermissionRepository } from '../../core/domain/interfaces/permission.repository.interface';
+import { Role } from '../../core/domain/entities/role.entity';
+import { CreateRoleDto } from '../../core/application/dtos/role/create-role.dto';
+import { UpdateRoleDto } from '../../core/application/dtos/role/update-role.dto';
 
 @Injectable()
 export class RoleService {

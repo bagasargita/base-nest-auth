@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Menu } from '../../core/domain/entities/menu.entity';
 import { MenuController } from 'src/presentation/controllers/menu.controller';
-import { MenuService } from '../../core/application/services/menu.service';
+import { MenuService } from '../services/menu.service';
 import { MenuRepository } from '../repositories/menu.repository';
 import { MENU_REPOSITORY } from 'src/core/domain/interfaces/menu.repository.interface';
 
